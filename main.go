@@ -13,8 +13,13 @@ func main() {
 		AllowOrigins: []string{"http://localhost:3000"},
 	}))
 
-	router.GET("/", handlers.Index)
-	router.POST("/contact", handlers.Contact)
+	v1 := router.Group("/v1")
+	{
+
+		v1.GET("/", handlers.Index)
+		v1.POST("/contact", handlers.Contact)
+
+	}
 
 	router.Run("localhost:8000")
 }
